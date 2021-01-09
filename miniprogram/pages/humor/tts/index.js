@@ -70,8 +70,7 @@ Page({
             return
         }
         var req = {
-            Text: e.detail.value.textarea,
-            ClientID: "82:a9:10:86:38:01",
+            Text: e.detail.value.textarea
         }
         console.log(req)
         humors.callHumor("tts", req,

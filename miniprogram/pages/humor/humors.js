@@ -11,7 +11,6 @@ function callHumor(action, req, succCall, failCall) {
         },
         success: (res =>  {
             var result = res.result
-            console.log("result: ", result)
             if (result.response.code === undefined) {
                 result.response.code = 0;
             }
