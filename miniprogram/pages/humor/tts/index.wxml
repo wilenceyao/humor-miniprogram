@@ -1,7 +1,0 @@
-<!--miniprogram/pages/humor/tts/index.wxml-->
-<view class="section">
-  <form bindsubmit="bindFormSubmit">
-    <textarea placeholder="输入文本内容" name="textarea" auto-focus="true"></textarea>
-    <button form-type="submit" type="primary"> 提交 </button>
-  </form>
-</view>

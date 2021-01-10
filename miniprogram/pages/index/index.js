@@ -1,6 +1,6 @@
 //index.js
 const app = getApp()
-import humors from '../humor/humors.js';
+import humors from '../../utils/humors.js';
 
 Page({
   data: {
@@ -8,7 +8,8 @@ Page({
     userInfo: {},
     logged: false,
     takeSession: false,
-    requestResult: ''
+    requestResult: '',
+    authorized: false,
   },
 
   onLoad: function () {
@@ -28,9 +29,18 @@ Page({
             success: res => {
               this.setData({
                 avatarUrl: res.userInfo.avatarUrl,
-                userInfo: res.userInfo
+                userInfo: res.userInfo,
+                logged: true,
+                openid: getApp().globalData.openid
               })
             }
+          })
+          wx.getOpenid
+        } else {
+          wx.showToast({
+            title: '请登陆后使用',
+            icon: 'none',
+            duration: humors.toastDuration
           })
         }
       }
@@ -75,14 +85,14 @@ Page({
         wx.showToast({
           title: '正在播报本地天气',
           icon: 'none',
-          duration: 1000
+          duration: humors.toastDuration
         })
       }),
       (res => {
         wx.showToast({
-          title: '获取数据失败',
-          icon: 'error',
-          duration: 1000
+          title: humors.toastErrText,
+          icon: 'none',
+          duration: humors.toastDuration
         })
       }))
   }

@@ -1,5 +1,5 @@
-// miniprogram/pages/humor/tts/index.js
-import humors from '../humors.js';
+// miniprogram/pages/humor/tts/tts.js
+import humors from '../../utils/humors.js';
 
 Page({
 
@@ -72,13 +72,24 @@ Page({
         var req = {
             Text: e.detail.value.textarea
         }
-        console.log(req)
         humors.callHumor("tts", req,
             (res => {
-                console.log("消息发送成功")
+                wx.showToast({
+                    title: humors.toastSuccText,
+                    icon: 'none',
+                    duration: humors.toastDuration
+                });
+                this.setData({
+                    inputText: ''
+                })
             }),
             (res => {
-                console.log("消息发送失败")
+                console.log(res)
+                wx.showToast({
+                    title: humors.toastErrText,
+                    icon: 'none',
+                    duration: humors.toastDuration
+                })
             }))
     }
 })
